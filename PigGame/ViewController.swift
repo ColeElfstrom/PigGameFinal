@@ -22,18 +22,26 @@ class ViewController: UIViewController
     @IBOutlet var playerNameLabel: UILabel!
     @IBOutlet var playerTotalScoreLabel: UILabel!
     @IBOutlet var playerTurnScoreLabel: UILabel!
+    @IBOutlet var rollDiceLabel: UILabel!
     
-    //Game Over Labels
+    //Game Over Views
     @IBOutlet var gameOverSkyView: UIView!
     @IBOutlet var gameOverGroundView: UIView!
+    
+    //Game Over Labels
     @IBOutlet var playerWinnerLabel: UILabel!
     @IBOutlet var gameOverP1ScoreLabel: UILabel!
     @IBOutlet var gameOverP2ScoreLabel: UILabel!
+    
+    //Static Labels
+    @IBOutlet var staticP1ScoreLabel: UILabel!
+    @IBOutlet var staticP2ScoreLabel: UILabel!
     
     //Actions
     @IBAction func rollDiceAction(_ sender: Any)
     {
         playerTemp.roll()
+        //rollDiceLabel.text = "\(playerTemp.value)"
         
         if playerTemp.value == 1
         {
@@ -81,7 +89,11 @@ class ViewController: UIViewController
         {
             gameOverSkyView.isOpaque = true
             gameOverGroundView.isOpaque = true
+            
             playerWinnerLabel.text = "\(playerTemp.name) has won!"
+            
+            staticP1ScoreLabel.text = "Player 1 Score"
+            staticP2ScoreLabel.text = "Player 2 Score"
             
             gameOverP1ScoreLabel.text = "\(player1.totalPoints)"
             gameOverP2ScoreLabel.text = "\(player2.totalPoints)"
@@ -95,6 +107,18 @@ class ViewController: UIViewController
         self.playerTemp = player
     }
     
+    func setLabelsToBlank()
+    {
+        //Enable or Disable
+        rollDiceLabel.text = String()
+        
+        playerWinnerLabel.text = String()
+        staticP1ScoreLabel.text = String()
+        staticP2ScoreLabel.text = String()
+        gameOverP1ScoreLabel.text = String()
+        gameOverP2ScoreLabel.text = String()
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -102,6 +126,7 @@ class ViewController: UIViewController
         gameOverSkyView.isOpaque = false
         gameOverGroundView.isOpaque = false
         
+        setLabelsToBlank()
         setPlayerTemp(player1)
         update()
     }
@@ -128,6 +153,7 @@ class Player
     func endTurn()
     {
         totalPoints += turnPoints
+        turnPoints = 0
     }
 }
 
