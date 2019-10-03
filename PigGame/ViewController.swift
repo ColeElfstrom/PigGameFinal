@@ -10,54 +10,100 @@ import UIKit
 
 class ViewController: UIViewController
 {
+    //Instance Variables
+    let winCondition: Int = 100
+    var winner: Bool = false
+    
+    var playerTemp: Dice = Dice("temp")
+    let player1 = Dice("Player 1") //Name can change in the future with player input
+    let player2 = Dice("Player 2") //Name can change in the future with player input
+    
+    //Current Game Labels
     @IBOutlet var playerNameLabel: UILabel!
+    @IBOutlet var playerTotalScoreLabel: UILabel!
+    @IBOutlet var playerTurnScoreLabel: UILabel!
+    
+    //Game Over Labels
+    @IBOutlet var gameOverSkyView: UIView!
+    @IBOutlet var gameOverGroundView: UIView!
+    @IBOutlet var playerWinnerLabel: UILabel!
+    @IBOutlet var gameOverP1ScoreLabel: UILabel!
+    @IBOutlet var gameOverP2ScoreLabel: UILabel!
+    
+    //Actions
+    @IBAction func rollDiceAction(_ sender: Any)
+    {
+        playerTemp.roll()
+        
+        if playerTemp.value == 1
+        {
+            playerTemp.resetPoints()
+            playerTemp.endTurn()
+            
+            playerTemp = (playerTemp.name == player1.name) ? player2 : player1
+            playerNameLabel.text = "\(playerTemp.name) Turn"
+        }
+        
+        else
+        {
+            playerTemp.turnPoints += playerTemp.value
+        }
+        
+        //Display a dice image here
+        
+        update()
+    }
+    
+    @IBAction func endTurnAction(_ sender: Any)
+    {
+        playerTemp.endTurn()
+        
+        if(playerTemp.totalPoints >= winCondition)
+        {
+            winner = true
+        }
+        
+        else
+        {
+            playerTemp = (playerTemp.name == player1.name) ? player2 : player1
+        }
+        
+        update()
+    }
+    
+    func update()
+    {
+        playerNameLabel.text = "\(playerTemp.name) Turn"
+        playerTotalScoreLabel.text = "Total Score: \(playerTemp.totalPoints)"
+        playerTurnScoreLabel.text = "Turn Score : \(playerTemp.turnPoints)"
+        
+        if winner
+        {
+            gameOverSkyView.isOpaque = true
+            gameOverGroundView.isOpaque = true
+            playerWinnerLabel.text = "\(playerTemp.name) has won!"
+            
+            gameOverP1ScoreLabel.text = "\(player1.totalPoints)"
+            gameOverP2ScoreLabel.text = "\(player2.totalPoints)"
+            
+            //Display a pig image here
+        }
+    }
+    
+    func setPlayerTemp(_ player: Dice)
+    {
+        self.playerTemp = player
+    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        //Points needed to win
-        let winCondition: Int = 100
+        gameOverSkyView.isOpaque = false
+        gameOverGroundView.isOpaque = false
         
-        //Dice constants
-        let player1 = Dice("Player 1") //Name can change in the future with player input
-        let player2 = Dice("Player 2") //Name can change in the future with player input
-        
-        //Player turns
-        var playerTemp = player1
-            
-            playerTemp.roll()
-            
-            if playerTemp.value == 1
-            {
-                playerTemp.resetPoints()
-            }
-            
-            rollDice = false
-            endTurn = false
-            while !endTurn && !rollDice {} //Pause game until endTurnButton or rollDice Button is pressed
-        
-            if rollDice
-            {
-                playerTemp.roll()
-                
-                if playerTemp.value == 1
-                {
-                    playerTemp.resetPoints()
-                    break
-                }
-            }
-                
-            else if endTurn
-            {
-                playerTemp.endTurn()
-                break
-            }
-            
-            playerTemp = (playerTemp.name == player1.name) ? player2 : player1
-            playerNameLabel.text = "\(playerTemp.name) Turn"
-        
+        setPlayerTemp(player1)
+        update()
     }
 }
 
@@ -98,7 +144,6 @@ class Dice: Player
     func roll()
     {
         value = Int.random(in: 1..<7)
-        turnPoints += value
     }
     
     func printRoll()
