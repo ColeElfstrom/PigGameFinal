@@ -15,18 +15,18 @@ class ViewController: UIViewController
     var winner: Bool = false
     
     var playerTemp: Dice = Dice("temp")
-    let player1 = Dice("Player 1") //Name can change in the future with player input
-    let player2 = Dice("Player 2") //Name can change in the future with player input
+    var player1 = Dice("Player 1") //Name can change in the future with player input
+    var player2 = Dice("Player 2") //Name can change in the future with player input
     
     //Current Game Labels
     @IBOutlet var playerNameLabel: UILabel!
     @IBOutlet var playerTotalScoreLabel: UILabel!
     @IBOutlet var playerTurnScoreLabel: UILabel!
-    @IBOutlet var rollDiceLabel: UILabel!
+
+    @IBOutlet var diceImage: UIImageView!
     
     //Game Over Views
     @IBOutlet var gameOverSkyView: UIView!
-    @IBOutlet var gameOverGroundView: UIView!
     
     //Game Over Labels
     @IBOutlet var playerWinnerLabel: UILabel!
@@ -36,6 +36,10 @@ class ViewController: UIViewController
     //Static Labels
     @IBOutlet var staticP1ScoreLabel: UILabel!
     @IBOutlet var staticP2ScoreLabel: UILabel!
+    
+    @IBOutlet var rollDiceButton: UIButton!
+    @IBOutlet var endTurnButton: UIButton!
+    @IBOutlet var replayButton: UIButton!
     
     //Actions
     @IBAction func rollDiceAction(_ sender: Any)
@@ -58,6 +62,7 @@ class ViewController: UIViewController
         }
         
         //Display a dice image here
+        diceImage.image = UIImage(named:"dice\(playerTemp.value).jpg")
         
         update()
     }
@@ -79,6 +84,11 @@ class ViewController: UIViewController
         update()
     }
     
+    @IBAction func replayAction(_ sender: Any)
+    {
+        initializeGame()
+    }
+    
     func update()
     {
         playerNameLabel.text = "\(playerTemp.name) Turn"
@@ -88,7 +98,6 @@ class ViewController: UIViewController
         if winner
         {
             gameOverSkyView.isOpaque = true
-            gameOverGroundView.isOpaque = true
             
             playerWinnerLabel.text = "\(playerTemp.name) has won!"
             
@@ -97,6 +106,15 @@ class ViewController: UIViewController
             
             gameOverP1ScoreLabel.text = "\(player1.totalPoints)"
             gameOverP2ScoreLabel.text = "\(player2.totalPoints)"
+            
+            diceImage.alpha = 0.0
+            rollDiceButton.alpha = 0.0
+            endTurnButton.alpha = 0.0
+            replayButton.alpha = 1.0
+            
+            rollDiceButton.isUserInteractionEnabled = false
+            endTurnButton.isUserInteractionEnabled = false
+            replayButton.isUserInteractionEnabled = true
             
             //Display a pig image here
         }
@@ -110,7 +128,7 @@ class ViewController: UIViewController
     func setLabelsToBlank()
     {
         //Enable or Disable
-        rollDiceLabel.text = String()
+        //rollDiceLabel.text = String()
         
         playerWinnerLabel.text = String()
         staticP1ScoreLabel.text = String()
@@ -119,16 +137,32 @@ class ViewController: UIViewController
         gameOverP2ScoreLabel.text = String()
     }
     
-    override func viewDidLoad()
+    func initializeGame()
     {
-        super.viewDidLoad()
+        winner = false
+        playerTemp = Dice("temp")
+        player1 = Dice("Player 1")
+        player2 = Dice("Player 2")
         
         gameOverSkyView.isOpaque = false
-        gameOverGroundView.isOpaque = false
+        rollDiceButton.alpha = 1.0
+        endTurnButton.alpha = 1.0
+        replayButton.alpha = 0.0
+        diceImage.alpha = 1.0
+        
+        rollDiceButton.isUserInteractionEnabled = true
+        endTurnButton.isUserInteractionEnabled = true
+        replayButton.isUserInteractionEnabled = false
         
         setLabelsToBlank()
         setPlayerTemp(player1)
         update()
+    }
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        initializeGame()
     }
 }
 

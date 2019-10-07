@@ -87,27 +87,14 @@
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynr-gx-Hvj">
-                                        <rect key="frame" x="169" y="249" width="76" height="172"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="0">
-                                                <attributes>
-                                                    <font key="NSFont" size="144" name="GillSans-SemiBoldItalic"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.37607341999999999" green="0.82174879310000004" blue="0.94119650129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CP6-3S-JeM">
-                                <rect key="frame" x="0.0" y="596" width="414" height="300"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dice1" translatesAutoresizingMaskIntoConstraints="NO" id="IY4-n7-sdg">
+                                <rect key="frame" x="87" y="241" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.16945160470000001" green="1" blue="0.26365084370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
+                                <color key="backgroundColor" red="0.0" green="0.83179217576980591" blue="0.95568603277206421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSz-TX-Zyf">
                                 <rect key="frame" x="0.0" y="596" width="414" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -116,6 +103,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pig1" translatesAutoresizingMaskIntoConstraints="NO" id="Mdk-Nz-lKh">
+                                <rect key="frame" x="-98" y="569" width="649" height="305"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N05-XK-7DR">
                                 <rect key="frame" x="0.0" y="44" width="414" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -176,7 +167,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Qd-Km-KPb">
-                                <rect key="frame" x="92" y="747" width="230" height="65"/>
+                                <rect key="frame" x="92" y="746" width="230" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.29902387339999997" green="0.67036421690000003" blue="0.76331032899999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal">
@@ -194,12 +185,32 @@
                                     <action selector="endTurnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mPi-7e-3sf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m1v-d2-Eou">
+                                <rect key="frame" x="92" y="496" width="230" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.29902387339999997" green="0.67036421690000003" blue="0.76331032899999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Replay">
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="36" name="GillSans-SemiBoldItalic"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="replayAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="awz-ne-yZe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.37607341999999999" green="0.82174879310000004" blue="0.94119650129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="gameOverGroundView" destination="CP6-3S-JeM" id="lza-0b-uT6"/>
+                        <outlet property="diceImage" destination="IY4-n7-sdg" id="6aT-Om-Vqn"/>
+                        <outlet property="endTurnButton" destination="9Qd-Km-KPb" id="Zpr-4u-Dqr"/>
                         <outlet property="gameOverP1ScoreLabel" destination="Day-9B-0n2" id="6Kk-Je-caa"/>
                         <outlet property="gameOverP2ScoreLabel" destination="E8p-DY-SyI" id="coY-3I-COt"/>
                         <outlet property="gameOverSkyView" destination="HXg-eJ-tno" id="msj-qd-GyU"/>
@@ -207,7 +218,8 @@
                         <outlet property="playerTotalScoreLabel" destination="ROI-Fa-qTz" id="p4w-tU-elM"/>
                         <outlet property="playerTurnScoreLabel" destination="Svs-Gq-fLm" id="mcU-D2-DL6"/>
                         <outlet property="playerWinnerLabel" destination="avf-sG-Z88" id="D9Q-ua-J2I"/>
-                        <outlet property="rollDiceLabel" destination="ynr-gx-Hvj" id="Jlf-o5-3HL"/>
+                        <outlet property="replayButton" destination="m1v-d2-Eou" id="FoB-x9-u2l"/>
+                        <outlet property="rollDiceButton" destination="VXA-CG-teF" id="erD-Ne-EvD"/>
                         <outlet property="staticP1ScoreLabel" destination="phF-9b-erg" id="j6V-ye-ut4"/>
                         <outlet property="staticP2ScoreLabel" destination="pMb-3J-2U6" id="Juz-ds-FRx"/>
                     </connections>
@@ -217,4 +229,8 @@
             <point key="canvasLocation" x="131.8840579710145" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Pig1" width="685" height="720"/>
+        <image name="dice1" width="95" height="95"/>
+    </resources>
 </document>
