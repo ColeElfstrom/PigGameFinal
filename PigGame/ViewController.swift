@@ -13,6 +13,7 @@ class ViewController: UIViewController
     //Instance Variables
     let winCondition: Int = 100
     var winner: Bool = false
+    var diceRolled: Bool = false
     
     var playerTemp: Dice = Dice("temp")
     var player1 = Dice("Player 1") //Name can change in the future with player input
@@ -45,15 +46,16 @@ class ViewController: UIViewController
     @IBAction func rollDiceAction(_ sender: Any)
     {
         playerTemp.roll()
-        //rollDiceLabel.text = "\(playerTemp.value)"
+        diceImage.alpha = 1.0
+        diceImage.image = UIImage(named:"dice\(playerTemp.value).jpg")
         
         if playerTemp.value == 1
         {
             playerTemp.resetPoints()
             playerTemp.endTurn()
             
-            playerTemp = (playerTemp.name == player1.name) ? player2 : player1
-            playerNameLabel.text = "\(playerTemp.name) Turn"
+            rollDiceButton.isUserInteractionEnabled = false
+            rollDiceButton.alpha = 0.0
         }
         
         else
@@ -61,14 +63,15 @@ class ViewController: UIViewController
             playerTemp.turnPoints += playerTemp.value
         }
         
-        //Display a dice image here
-        diceImage.image = UIImage(named:"dice\(playerTemp.value).jpg")
-        
         update()
     }
     
     @IBAction func endTurnAction(_ sender: Any)
     {
+        rollDiceButton.isUserInteractionEnabled = true
+        rollDiceButton.alpha = 1.0
+        diceImage.alpha = 0.0
+        diceRolled = false
         playerTemp.endTurn()
         
         if(playerTemp.totalPoints >= winCondition)
@@ -94,6 +97,19 @@ class ViewController: UIViewController
         playerNameLabel.text = "\(playerTemp.name) Turn"
         playerTotalScoreLabel.text = "Total Score: \(playerTemp.totalPoints)"
         playerTurnScoreLabel.text = "Turn Score : \(playerTemp.turnPoints)"
+        
+        if !diceRolled
+        {
+            endTurnButton.alpha = 0.0
+            endTurnButton.isUserInteractionEnabled = false
+            diceRolled = true
+        }
+        
+        else
+        {
+            endTurnButton.alpha = 1.0
+            endTurnButton.isUserInteractionEnabled = true
+        }
         
         if winner
         {
@@ -148,7 +164,7 @@ class ViewController: UIViewController
         rollDiceButton.alpha = 1.0
         endTurnButton.alpha = 1.0
         replayButton.alpha = 0.0
-        diceImage.alpha = 1.0
+        diceImage.alpha = 0.0
         
         rollDiceButton.isUserInteractionEnabled = true
         endTurnButton.isUserInteractionEnabled = true
